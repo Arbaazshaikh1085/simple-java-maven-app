@@ -3,34 +3,34 @@ package com.mycompany.app;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppTest {
+class AppTest { // Removed 'public' modifier
 
     @Test
-    public void testAppConstructor() {
+    void testAppConstructor() { // Removed 'public'
         App app = new App();
-        assertEquals(0, app.incrementCounter() - 1); // counter initialized to 0
+        assertEquals(0, app.incrementCounter() - 1);
     }
 
     @Test
-    public void testAppMessage() {
+    void testAppMessage() { // Removed 'public'
         App app = new App();
         assertEquals("Hello World!", app.getMessage());
     }
 
     @Test
-    public void testStaticMessage() {
+    void testStaticMessage() { // Removed 'public'
         assertEquals("Hello World!", App.getStaticMessage());
     }
 
     @Test
-    public void testCounterIncrement() {
+    void testCounterIncrement() { // Removed 'public'
         App app = new App();
         assertEquals(1, app.incrementCounter());
         assertEquals(2, app.incrementCounter());
     }
 
     @Test
-    public void testCounterReset() {
+    void testCounterReset() { // Removed 'public'
         App app = new App();
         app.incrementCounter();
         app.incrementCounter();
@@ -38,8 +38,15 @@ public class AppTest {
     }
 
     @Test
-    public void testIsMessageHelloWorld() {
+    void testIsMessageHelloWorld() { // Removed 'public'
         App app = new App();
         assertTrue(app.isMessageHelloWorld());
+    }
+
+    @Test
+    void testMessageEquals() {
+        App app = new App();
+        assertTrue(app.messageEquals("Hello World!"));
+        assertFalse(app.messageEquals("Other Message"));
     }
 }
