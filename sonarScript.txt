@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    
+    environment {
+        SONAR_TOKEN = credentials('token-sonar')
+    }
+    
+    tools {
+        maven "MAVEN"
+    }
+    
+    stages {
+        
+        stage('Git Checkout') {
+            steps {
+                git 'https://github.com/Arbaazshaikh1085/simple-java-maven-app.git'
+            }
+        }
+        
+        stage('Verifying') {
+            steps {
+                bat 'mvn clean verify'
+            }
+        }
+        
+        
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    bat '''
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=MyOwnProject \
+                        -Dsonar.projectName=MyOwnProject \
+                          -Dsonar.login=$SONAR_TOKEN \
+                    '''
+                }
+            }
+        }
+    }
+}
