@@ -10,6 +10,7 @@ public class App {
         this.counter = 0;
     }
 
+    // Use the constant instead of duplicating value
     public static String getStaticMessage() {
         return MESSAGE;
     }
@@ -28,6 +29,11 @@ public class App {
     }
 
     public boolean isMessageHelloWorld() {
-        return MESSAGE.equals("Hello World!");
+        return MESSAGE.equals("Hello World!"); // Could also reuse getMessage()
+    }
+
+    // Better implementation to avoid duplicating getStaticMessage
+    public boolean messageEquals(String otherMessage) {
+        return MESSAGE.equals(otherMessage);
     }
 }
